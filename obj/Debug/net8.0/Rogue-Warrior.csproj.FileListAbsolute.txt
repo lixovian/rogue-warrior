@@ -1,0 +1,14 @@
+F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\bin\Debug\net8.0\Rogue-Warrior.exe
+F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\bin\Debug\net8.0\Rogue-Warrior.deps.json
+F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\bin\Debug\net8.0\Rogue-Warrior.runtimeconfig.json
+F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\bin\Debug\net8.0\Rogue-Warrior.dll
+F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\bin\Debug\net8.0\Rogue-Warrior.pdb
+F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\obj\Debug\net8.0\Rogue-Warrior.GeneratedMSBuildEditorConfig.editorconfig
+F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\obj\Debug\net8.0\Rogue-Warrior.AssemblyInfoInputs.cache
+F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\obj\Debug\net8.0\Rogue-Warrior.AssemblyInfo.cs
+F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\obj\Debug\net8.0\Rogue-Warrior.csproj.CoreCompileInputs.cache
+F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\obj\Debug\net8.0\Rogue-Warrior.dll
+F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\obj\Debug\net8.0\refint\Rogue-Warrior.dll
+F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\obj\Debug\net8.0\Rogue-Warrior.pdb
+F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\obj\Debug\net8.0\Rogue-Warrior.genruntimeconfig.cache
+F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\obj\Debug\net8.0\ref\Rogue-Warrior.dll
