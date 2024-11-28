@@ -89,6 +89,27 @@ public class Vector2
     {
         return new Vector2(-x, -y);
     }
+
+    public Vector2 Abs()
+    {
+        x = Math.Abs(x);
+        y = Math.Abs(y);
+
+        return this;
+    }
+
+    public Vector2 Limit(Vector2 mask)
+    {
+        mask.Abs();
+        
+        x = Math.Min(x, mask.x);
+        y = Math.Min(y, mask.y);
+        
+        x = Math.Max(x, -mask.x);
+        y = Math.Max(x, -mask.y);
+        
+        return this;
+    }
     
     public bool Equals(Vector2 b)
     {
@@ -105,6 +126,11 @@ public class Vector2
     public static bool Equals(Vector2 a, Vector2 b)
     {
         return a.x == b.x && a.y == b.y;
+    }
+    
+    public static double GetDistance(Vector2 a, Vector2 b)
+    {
+        return Subtract(a, b).GetLength();
     }
 
     public static Vector2 Sum(Vector2 a, Vector2 b)

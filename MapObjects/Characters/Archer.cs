@@ -24,7 +24,7 @@ public class Archer : Character
         return MaxHealth;
     }
 
-    protected override double GetAttackRange()
+    public override double GetAttackRange()
     {
         return AttackRange;
     }

@@ -12,3 +12,4 @@ F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\obj\Debug\net8.0\refint\Ro
 F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\obj\Debug\net8.0\Rogue-Warrior.pdb
 F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\obj\Debug\net8.0\Rogue-Warrior.genruntimeconfig.cache
 F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\obj\Debug\net8.0\ref\Rogue-Warrior.dll
+F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\obj\Debug\net8.0\Rogue-Warrior.sourcelink.json

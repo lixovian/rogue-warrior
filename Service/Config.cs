@@ -9,4 +9,5 @@ public class Config
     
     public const char GroundChar = '.';
     public const ConsoleColor HealthColor = ConsoleColor.Green;
+    public const ConsoleColor FontColor = ConsoleColor.White;
 }

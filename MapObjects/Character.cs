@@ -21,6 +21,8 @@ public abstract class Character
     
     private static readonly int Speed = 1;
 
+    private Ai _ai;
+
     public string DebugData = "";
 
     private static readonly int Strength = 1;
@@ -32,8 +34,9 @@ public abstract class Character
     protected Character(Vector2? position = null, Team team = Team.Red)
     {
         Health = GetMaxHealth();
-
         Set(position ?? new Vector2(), team);
+
+        _ai = new BaseAi(this);
     }
 
     public void Set(Vector2 position, Team team)
@@ -83,7 +86,7 @@ public abstract class Character
         return Speed;
     }
     
-    protected virtual double GetAttackRange()
+    public virtual double GetAttackRange()
     {
         return AttackRange;
     }
@@ -122,11 +125,11 @@ public abstract class Character
 
         DebugData = "   ";
 
-        Vector2 movementOffset = AiCalculateMovement(characters);
+        Vector2 movementOffset = _ai.CharacterCalculateMovement(characters);
 
         if (IsMoveValid(movementOffset, characters)) Position.Add(movementOffset);
 
-        Character? toAttack = AiCalculateAttack(characters);
+        Character? toAttack = _ai.CharacterCalculateAttack(characters);
         
         if (toAttack == null) return;
 
@@ -160,102 +163,12 @@ public abstract class Character
         return true;
     }
 
-    private Character? AiCalculateAttack(Character[] characters)
+    public double GetDistance(Character character)
     {
-        Character[] inRangeEnemies = GetInRangeEnemies(characters);
-
-        if (characters.Length == 0) return null;
-
-        Character toAttack = null;
-        foreach (Character character in inRangeEnemies)
-        {
-            if (toAttack == null || CompareDanger(toAttack, character) < 0)
-            {
-                toAttack = character;
-            }
-        }
-
-        return toAttack;
+        return Vector2.GetDistance(GetPosition(), character.GetPosition());
     }
 
-    private int CompareDanger(Character character1, Character character2)
-    {
-        return GetDanger(character1) - GetDanger(character2);
-    }
-
-    private int GetDanger(Character character)
-    {
-        return -character.GetHealth() + character.GetStrength() * 2 + GetTypeDanger(character);
-    }
-
-    private static int GetTypeDanger(Character character)
-    {
-        return character switch
-        {
-            Archer => 100,
-            Mage => 1000,
-            God => 100000,
-            _ => 0
-        };
-    }
-
-    private Vector2 AiCalculateMovement(Character[] characters)
-    {
-        Vector2? closestEnemyPosition = GetClosestEnemy(characters);
-
-        DebugData += " ce:" + closestEnemyPosition;
-        
-        if (closestEnemyPosition == null || GetDistance(closestEnemyPosition) <= GetAttackRange()) return new Vector2();
-        
-        // TODO: make speed work
-        return Vector2.Subtract(closestEnemyPosition, GetPosition()).Normalize();
-    }
-
-    private Vector2? GetClosestEnemy(Character[] characters)
-    {
-        Vector2? closestEnemyPosition = null;
-
-        foreach (Character character in characters)
-        {
-            if (!character.IsDead() && IsEnemy(character) && (closestEnemyPosition == null ||
-                                                              GetDistance(closestEnemyPosition) >
-                                                              GetDistance(character)))
-            {
-                closestEnemyPosition = character.GetPosition();
-            }
-        }
-
-        return closestEnemyPosition;
-    }
-
-    private Character[] GetInRangeEnemies(Character[] characters)
-    {
-        List<Character> inRangeEnemies = [];
-
-        foreach (Character character in characters)
-        {
-            if (IsEnemy(character) && GetDistance(character) <= GetAttackRange() && !character.IsDead())
-            {
-                inRangeEnemies.Add(character);
-            }
-        }
-
-        DebugData += " ia:" + inRangeEnemies.Count;
-
-        return inRangeEnemies.ToArray();
-    }
-
-    private double GetDistance(Character character)
-    {
-        return GetDistance(character.GetPosition());
-    }
-
-    private double GetDistance(Vector2 position)
-    {
-        return Vector2.Subtract(GetPosition(), position).GetLength();
-    }
-
-    private bool IsEnemy(Character character)
+    public bool IsEnemy(Character character)
     {
         return !CharacterTeam.Equals(character.CharacterTeam);
     }

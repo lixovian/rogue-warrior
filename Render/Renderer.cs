@@ -30,7 +30,7 @@ public static class Renderer
                 {
                     Console.ForegroundColor = GetTextColor(character.CharacterTeam);
                     Console.Write(character.GetDisplay());
-                    Console.ForegroundColor = GetTextColor(Character.Team.Neutral);
+                    Console.ForegroundColor = Config.FontColor;
                 }
                 else
                 {
@@ -92,7 +92,7 @@ public static class Renderer
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Out.Write(character.DebugData);
 
-            Console.ForegroundColor = GetTextColor(Character.Team.Neutral);
+            Console.ForegroundColor = Config.FontColor;
             Console.Out.WriteLine();
         }
     }
@@ -105,8 +105,6 @@ public static class Renderer
                 return ConsoleColor.Blue;
             case Character.Team.Red:
                 return ConsoleColor.Red;
-            case Character.Team.Neutral:
-                return ConsoleColor.White; // TODO: Kostyl
             default:
                 return ConsoleColor.Gray;
         }
