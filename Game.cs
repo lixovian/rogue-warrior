@@ -3,6 +3,7 @@
 public class Game
 {
     public Character[] Characters;
+    public Map Map;
     private static Random _random = new Random();
 
     public Game()

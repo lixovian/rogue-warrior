@@ -7,6 +7,7 @@ public class BaseMovementAi : Ai
         throw new NotImplementedException();
     }
 
+    // волновой алгоритм
     public override Vector2 CharacterCalculateMovement(Character[] characters)
     {
         return new Vector2(0, 0);
