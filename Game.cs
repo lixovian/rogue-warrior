@@ -94,9 +94,11 @@ public class Game
     
     public void MoveCharacters()
     {
-        foreach (Character character in Characters)
+        Character[] characters = Map.GetCharacters();
+        
+        foreach (Character character in characters)
         {
-            character.OnTurn(Characters);
+            character.OnTurn(Map);
         }
     }
 }

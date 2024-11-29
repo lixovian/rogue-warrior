@@ -123,6 +123,9 @@ public class Vector2
 
     public int this[int i] => (i == 0) ? x : y;
     
+    public int X => x;
+    public int Y => y;
+    
     public static bool Equals(Vector2 a, Vector2 b)
     {
         return a.x == b.x && a.y == b.y;

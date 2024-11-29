@@ -1,7 +1,9 @@
 ﻿namespace Rogue_Warrior;
 
-public abstract class Ai
+public abstract class Ai(Character main)
 {
-    public abstract Character? CharacterCalculateAttack(Character[] characters);
-    public abstract Vector2 CharacterCalculateMovement(Character[] characters);
+    protected Character _main = main;
+    
+    public abstract Character? CharacterCalculateAttack(Map map);
+    public abstract Vector2 CharacterCalculateMovement(Map map);
 }

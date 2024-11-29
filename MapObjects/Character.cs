@@ -1,8 +1,9 @@
 ﻿using System.Diagnostics;
+using Rogue_Warrior.MapObjects;
 
 namespace Rogue_Warrior;
 
-public abstract class Character
+public abstract class Character : MapObject
 {
     public enum Team
     {
@@ -116,7 +117,7 @@ public abstract class Character
         return Position;
     }
 
-    public void OnTurn(Character[] characters)
+    public void OnTurn(Map map)
     {
         if (IsDead())
         {
@@ -125,14 +126,16 @@ public abstract class Character
 
         DebugData = "   ";
 
-        Vector2 movementOffset = _ai.CharacterCalculateMovement(characters);
+        Vector2 movementOffset = _ai.CharacterCalculateMovement(map);
 
-        if (IsMoveValid(movementOffset, characters)) Position.Add(movementOffset);
+        if (IsMoveValid(movementOffset, map)) Position.Add(movementOffset);
 
-        Character? toAttack = _ai.CharacterCalculateAttack(characters);
+        Character? toAttack = _ai.CharacterCalculateAttack(map);
         
         if (toAttack == null) return;
 
+        Character[] characters = map.GetCharacters();
+        
         foreach (Character ch in characters)
         {
             if (ch != toAttack)
@@ -141,23 +144,22 @@ public abstract class Character
             }
 
             DebugData += " ta:" + ch;
-            DebugData += " hb:" + ch.GetHealth();
 
             ch.Damage(GetStrength());
-
-            DebugData += " ha:" + ch.GetHealth();
 
             return;
         }
     }
 
-    private bool IsMoveValid(Vector2 movement, Character[] characters)
+    private bool IsMoveValid(Vector2 movement, Map map)
     {
         Vector2 newPosition = Vector2.Sum(GetPosition(), movement);
 
-        foreach (Character character in characters)
+        MapObject[] objects = map.GetObjects();
+
+        foreach (MapObject obj in objects)
         {
-            if (!character.IsDead() && character.GetPosition().Equals(newPosition)) return false;
+            if (!obj.IsActive() && obj.GetPosition().Equals(newPosition)) return false;
         }
 
         return true;

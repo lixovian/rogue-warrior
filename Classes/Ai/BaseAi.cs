@@ -1,16 +1,12 @@
 ﻿namespace Rogue_Warrior;
 
-public class BaseAi : BaseMovementAi
+public class BaseAi(Character main) : BaseMovementAi(main)
 {
-    private Character _main;
-
-    public BaseAi(Character main)
+    // TODO: Fix kostyl
+    public override Character? CharacterCalculateAttack(Map map)
     {
-        _main = main;
-    }
-
-    public override Character? CharacterCalculateAttack(Character[] characters)
-    {
+        Character[] characters = map.GetCharacters();
+        
         Character[] inRangeEnemies = CharacterGetInRangeEnemies(characters);
 
         if (characters.Length == 0) return null;
@@ -27,8 +23,12 @@ public class BaseAi : BaseMovementAi
         return toAttack;
     }
 
-    public override Vector2 CharacterCalculateMovement(Character[] characters)
+    
+    // TODO: Fix kostyl
+    public override Vector2 CharacterCalculateMovement(Map map)
     {
+        Character[] characters = map.GetCharacters();
+        
         Character? closestEnemy = GetClosestEnemy(characters);
 
         if (closestEnemy == null || _main.GetDistance(closestEnemy) <= _main.GetAttackRange())
