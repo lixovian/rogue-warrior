@@ -10,17 +10,22 @@ namespace Rogue_Warrior.Service.FileHandling
         /// Считать данные файла в массив данных о карте.
         /// </summary>
         /// <returns>True - если данные считаны успешно, false - если произошла ошибка при считывании.</returns>
-        public static bool ParseFile(string inputPath, out MapObject?[,] map)
+        public static bool ParseFile(string inputPath, out List<MapObject> map, out Vector2 size)
         {
-            map = new MapObject?[,] { };
+            map = new List<MapObject>();
 
             try
             {
                 string[] lines = File.ReadAllLines(inputPath);
 
-                if (lines.Length == 0) return false;
+                if (lines.Length == 0)
+                {
+                    size = new Vector2(0, 0);
+                    return false;
+                }
 
-                map = new MapObject?[lines.Length, SplitLine(lines[0]).Length];
+                size = new Vector2(lines.Length, SplitLine(lines[0]).Length);
+                
                 for (var i = 0; i < lines.Length; i++)
                 {
                     var line = lines[i];
@@ -28,8 +33,12 @@ namespace Rogue_Warrior.Service.FileHandling
 
                     for (int j = 0; j < parameters.Length; j++)
                     {
-                        map[i, j] = GetObject(parameters[j].ElementAtOrDefault(0));
-                        map[i, j]?.SetPosition(new Vector2(i, j));
+                        MapObject obj = GetObject(parameters[j].ElementAtOrDefault(0));
+                        
+                        if (obj == null) continue;
+                        
+                        obj.SetPosition(new Vector2(i, j));
+                        map.Add(obj);
                     }
                 }
 
@@ -63,6 +72,7 @@ namespace Rogue_Warrior.Service.FileHandling
                 Console.Out.WriteLine("Указанный путь не найден.");
             }
 
+            size = new Vector2(0, 0);
             return false;
         }
 

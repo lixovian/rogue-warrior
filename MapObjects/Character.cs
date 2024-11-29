@@ -117,12 +117,12 @@ public abstract class Character : MapObject
 
     public void OnTurn(Map map)
     {
-        if (IsActive())
+        if (!IsActive())
         {
             return;
         }
 
-        DebugData = "   ";
+        DebugData = "   /debug/";
 
         Vector2 movementOffset = _ai.CharacterCalculateMovement(map);
         if (IsMoveValid(movementOffset, map)) Position.Add(movementOffset);

@@ -5,21 +5,21 @@ namespace Rogue_Warrior.Render.Views;
 
 public class GameView : View
 {
+    private Game _game = new Game();
+
     public GameView()
     {
         Id = "game";
     }
-    
-    private Game _game = new Game();
 
     public override void OnStart()
     {
-        if (FileProcessor.ParseFile(Config.CurrentFile, out MapObject?[,] map))
+        if (FileProcessor.ParseFile(Config.CurrentFile, out List<MapObject> map, out Vector2 size))
         {
             Console.Out.WriteLine("Map loaded, press any button to continue...");
         } 
         
-        _game.Map.SetMap(map);
+        _game.Map.SetMap(map, size);
         
         Console.ReadKey();
         
@@ -29,9 +29,10 @@ public class GameView : View
 
     public override void OnIteration()
     {
-        _game.MoveCharacters();
+        // TODO: reorder for correct rendering
         Renderer.Rerender(_game.Map);
-            
+        _game.MoveCharacters();
+
         ConsoleKey key = Console.ReadKey().Key;
 
         if (key == ConsoleKey.Escape)

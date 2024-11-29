@@ -37,6 +37,8 @@ public class BaseAi(Character main) : BaseMovementAi(main)
         // TODO: make speed work properly
         Vector2 offset = Vector2.Subtract(closestEnemy.GetPosition(), _main.GetPosition()).Limit(new Vector2(_main.GetSpeed()));
 
+        Console.Out.WriteLine(Vector2.Subtract(closestEnemy.GetPosition(), _main.GetPosition()));
+        
         return offset;
     }
 

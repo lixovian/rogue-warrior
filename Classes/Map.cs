@@ -4,40 +4,21 @@ namespace Rogue_Warrior;
 
 public class Map
 {
-    private MapObject?[,] _map;
+    private Vector2 _size;
+    private List<MapObject> _objects;
 
 
-    public static MapObject?[,] GetEmpty(Vector2 size)
+    public void SetMap(List<MapObject> objects, Vector2 mapSize)
     {
-        MapObject?[,] map = new MapObject?[size[0], size[1]];
-
-        for (int i = 0; i < size[0]; i++)
-        {
-            for (int j = 0; j < size[1]; j++)
-            {
-                map[i, j] = null;
-            }
-        }
-        
-        return map;
-    }
-
-    public void SetMap(MapObject?[,] map)
-    {
-        _map = map;
+        _objects = objects;
+        _size = mapSize;
     }
 
     public void SetMap(Character[]? characters, Obstacle[]? obstacles, Vector2 mapSize)
     {
-        _map = new MapObject?[mapSize.X, mapSize.Y];
-
-        for (int i = 0; i < mapSize.X; i++)
-        {
-            for (int j = 0; j < mapSize.Y; j++)
-            {
-                _map[i, j] = null;
-            }
-        }
+        _objects = new List<MapObject>();
+        
+        _size = mapSize;
 
         if (characters != null)
         {
@@ -58,43 +39,38 @@ public class Map
 
     public void Set(MapObject obj)
     {
-        _map[obj.GetPosition().X, obj.GetPosition().Y] = obj;
+        _objects.Add(obj);
     }
 
     public Vector2 GetSize()
     {
-        return new Vector2(_map.GetLength(0), _map.GetLength(1));
+        return _size;
     }
     
     public MapObject? Get(Vector2 position)
     {
-        return _map[position.X, position.Y];
+        foreach (MapObject obj in _objects)
+        {
+            if (obj.GetPosition().Equals(position)) return obj;
+        }
+        
+        return null;
     }
     
     public MapObject? Get(int x, int y)
     {
-        return _map[x, y];
+        return Get(new Vector2(x, y));
     }
-
-    public void SetObject<T>(T obj, Vector2 position)
-    {
-        if (obj is not MapObject mapObject)
-        {
-            return;
-        }
-
-        _map[position.X, position.Y] = mapObject;
-    }
-
+    
     public Character[] GetCharacters()
     {
         List<Character> characters = new List<Character>();
 
-        for (int i = 0; i < _map.GetLength(0); i++)
+        for (int i = 0; i < _size[0]; i++)
         {
-            for (int j = 0; j < _map.GetLength(1); j++)
+            for (int j = 0; j < _size[1]; j++)
             {
-                if (_map[i, j] is not Character character) continue;
+                if (Get(i, j) is not Character character) continue;
 
                 characters.Add(character);
             }
@@ -115,11 +91,11 @@ public class Map
     {
         List<MapObject> objects = new List<MapObject>();
 
-        for (int i = 0; i < _map.GetLength(0); i++)
+        for (int i = 0; i < _size[0]; i++)
         {
-            for (int j = 0; j < _map.GetLength(1); j++)
+            for (int j = 0; j < _size[1]; j++)
             {
-                if (_map[i, j] is not MapObject obj) continue;
+                if (Get(i, j) is not MapObject obj) continue;
 
                 objects.Add(obj);
             }
@@ -130,6 +106,6 @@ public class Map
 
     public bool IsCellFree(Vector2 position)
     {
-        return _map[position[0], position[1]] is not null;
+        return Get(position) is not null;
     }
 }

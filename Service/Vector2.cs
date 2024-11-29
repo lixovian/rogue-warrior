@@ -101,12 +101,13 @@ public class Vector2
     public Vector2 Limit(Vector2 mask)
     {
         mask.Abs();
+
+        if (x > mask.x) x = mask.x;
+        else if (x < -mask.x) x = -mask.x;
         
-        x = Math.Min(x, mask.x);
-        y = Math.Min(y, mask.y);
+        if (y > mask.y) y = mask.y;
+        else if (y < -mask.y) y = -mask.y;
         
-        x = Math.Max(x, -mask.x);
-        y = Math.Max(x, -mask.y);
         
         return this;
     }
