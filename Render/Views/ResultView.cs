@@ -2,17 +2,22 @@
 
 public class ResultView : View
 {
-    public void onStart()
+    public ResultView()
+    {
+        Id = "result";
+    }
+
+    public override void OnStart()
     {
         throw new NotImplementedException();
     }
 
-    public void onIteration()
+    public override void OnIteration()
     {
         throw new NotImplementedException();
     }
 
-    public void onClose()
+    public override void OnClose()
     {
         throw new NotImplementedException();
     }

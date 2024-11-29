@@ -5,7 +5,9 @@
     /// </summary>
     public class PathProcessor
     {
+        private const string DefaultLevelDirectory = @"Files\Levels";
         private string _baseDirectoryPath = "";
+        private string _levelDirectoryPath = DefaultLevelDirectory;
      
         public PathProcessor()
         {
@@ -65,6 +67,11 @@
         public string GetPath(string path)
         {
             return _baseDirectoryPath + path;
+        }
+
+        public string[] GetLevels()
+        {
+            return Directory.GetFiles(GetPath(_levelDirectoryPath));
         }
     }
 }

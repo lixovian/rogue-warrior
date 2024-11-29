@@ -22,7 +22,7 @@ public abstract class Character : MapObject
     
     private static readonly int Speed = 1;
 
-    private Ai _ai;
+    protected Ai _ai;
 
     public string DebugData = "";
 
@@ -125,11 +125,9 @@ public abstract class Character : MapObject
         DebugData = "   ";
 
         Vector2 movementOffset = _ai.CharacterCalculateMovement(map);
-
         if (IsMoveValid(movementOffset, map)) Position.Add(movementOffset);
 
         Character? toAttack = _ai.CharacterCalculateAttack(map);
-        
         if (toAttack == null) return;
 
         Character[] characters = map.GetCharacters();

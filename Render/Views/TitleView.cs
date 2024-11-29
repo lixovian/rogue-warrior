@@ -2,10 +2,14 @@
 
 public class TitleView : View
 {
-    public void onStart()
+    public TitleView()
+    {
+        Id = "title";
+    }
+
+    public override void OnStart()
     {
         Console.Out.WriteLine("Welcome to");
-        
         Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.Out.WriteLine("██████╗  ██████╗  ██████╗ ██╗   ██╗███████╗    ██╗    ██╗ █████╗ ██████╗ ██████╗ ██╗ ██████╗ ██████╗");
         Console.Out.WriteLine("██╔══██╗██╔═══██╗██╔════╝ ██║   ██║██╔════╝    ██║    ██║██╔══██╗██╔══██╗██╔══██╗██║██╔═══██╗██╔══██╗");
@@ -18,14 +22,14 @@ public class TitleView : View
         Console.Out.WriteLine("Press any button to continue...");
     }
 
-    public void onIteration()
+    public override void OnIteration()
     {
         Console.ReadKey();
         
-        
+        ViewManager.ChangeView("menu");
     }
 
-    public void onClose()
+    public override void OnClose()
     {
     }
 }

@@ -1,8 +1,10 @@
 ﻿namespace Rogue_Warrior;
 
-public interface View
+public abstract class View
 {
-    public void onStart();
-    public void onIteration();
-    public void onClose();
+    public string Id = "none";
+    
+    public abstract void OnStart();
+    public abstract void OnIteration();
+    public abstract void OnClose();
 }
