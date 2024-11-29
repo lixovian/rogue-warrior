@@ -1,4 +1,6 @@
-﻿namespace Rogue_Warrior;
+﻿using Rogue_Warrior.MapObjects;
+
+namespace Rogue_Warrior;
 
 public static class Renderer
 {
@@ -7,29 +9,31 @@ public static class Renderer
         Thread.Sleep(Config.SleepTime);
     }
 
-    public static void Rerender(Character[] characters)
+    public static void Rerender(Map map)
     {
         Console.Clear();
 
-        RenderCharacters(characters);
-        RenderDescription(characters);
+        RenderCharacters(map);
+        RenderDescription(map);
     }
 
-    private static void RenderCharacters(Character[] characters)
+    private static void RenderCharacters(Map map)
     {
         // Console.WriteLine(new string(Config.BorderChar, Config.MapSize + 2));
         
-        for (int i = 0; i < Config.MapSize[0]; i++)
+        Vector2 mapSize = map.GetSize();
+        
+        for (int i = 0; i < mapSize[0]; i++)
         {
             // Console.Write(Config.BorderChar);
-            for (int j = 0; j < Config.MapSize[1]; j++)
+            for (int j = 0; j < mapSize[1]; j++)
             {
-                Character? character = GetCharacter(i, j,  characters);
-
-                if (character != null && !character.IsDead())
+                MapObject? obj = map.Get(i, j);
+                
+                if (obj != null && obj.IsActive())
                 {
-                    Console.ForegroundColor = GetTextColor(character.CharacterTeam);
-                    Console.Write(character.GetDisplay());
+                    Console.ForegroundColor = GetTextColor(obj);
+                    Console.Write(obj.GetDisplay());
                     Console.ForegroundColor = Config.FontColor;
                 }
                 else
@@ -45,35 +49,24 @@ public static class Renderer
         Console.WriteLine();
     }
 
-    private static Character? GetCharacter(int m, int n, Character[] characters)
+    private static void RenderDescription(Map map)
     {
-        foreach (Character character in characters)
-        {
-            if (character.GetPosition().Equals(m, n))
-            {
-                return character;
-            }
-        }
+        Character[] characters = map.GetSortedCharacters();
         
-        return null;
-    }
-
-    private static void RenderDescription(Character[] characters)
-    {
         int displayed = 0;
         for (var i = 0; i < characters.Length; i++)
         {
             if (displayed > 35) return;
             
             var character = characters[i];
-            if (character.IsDead())
+            if (!character.IsActive())
             {
                 continue;
             }
 
             displayed++;
 
-            Console.ForegroundColor = GetTextColor(character.CharacterTeam);
+            Console.ForegroundColor = GetTextColor(character);
             Console.Out.Write(character.GetDisplay() + ": ");
 
             Console.ForegroundColor = Config.HealthColor;
@@ -97,16 +90,26 @@ public static class Renderer
         }
     }
 
-    private static ConsoleColor GetTextColor(Character.Team team)
+    private static ConsoleColor GetTextColor(MapObject obj)
     {
-        switch (team)
+        if (obj is Obstacle)
         {
-            case Character.Team.Blue:
-                return ConsoleColor.Blue;
-            case Character.Team.Red:
-                return ConsoleColor.Red;
-            default:
-                return ConsoleColor.Gray;
+            return ConsoleColor.DarkYellow;
+        } 
+        
+        if (obj is Character character)
+        {
+            switch (character.CharacterTeam)
+            {
+                case Character.Team.Blue:
+                    return ConsoleColor.Blue;
+                case Character.Team.Red:
+                    return ConsoleColor.Red;
+                default:
+                    return ConsoleColor.Gray;
+            }
         }
+        
+        return ConsoleColor.White;
     }
 }

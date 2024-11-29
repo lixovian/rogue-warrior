@@ -67,7 +67,7 @@ public class BaseAi(Character main) : BaseMovementAi(main)
 
         foreach (Character character in characters)
         {
-            if (!character.IsDead() && _main.IsEnemy(character) && (closestEnemy == null ||
+            if (character.IsActive() && _main.IsEnemy(character) && (closestEnemy == null ||
                                                                     _main.GetDistance(closestEnemy) >
                                                                     _main.GetDistance(character)))
             {
@@ -84,7 +84,7 @@ public class BaseAi(Character main) : BaseMovementAi(main)
 
         foreach (Character character in characters)
         {
-            if (_main.IsEnemy(character) && _main.GetDistance(character) <= _main.GetAttackRange() && !character.IsDead())
+            if (_main.IsEnemy(character) && _main.GetDistance(character) <= _main.GetAttackRange() && character.IsActive())
             {
                 inRangeEnemies.Add(character);
             }

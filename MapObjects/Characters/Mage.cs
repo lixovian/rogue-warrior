@@ -2,7 +2,7 @@
 
 public class Mage : Character
 {
-    private static readonly char DisplayChar = 'M';
+    protected static readonly char DisplayChar = 'M';
     
     private static readonly int MaxHealth = 3;
 

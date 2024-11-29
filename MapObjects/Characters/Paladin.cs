@@ -2,7 +2,7 @@
 
 public class Paladin : Character
 {
-    private static readonly char DisplayChar = 'P';
+    protected static readonly char DisplayChar = 'P';
     
     private static readonly int MaxHealth = 15;
 

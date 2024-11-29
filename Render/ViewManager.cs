@@ -10,6 +10,9 @@ public class ViewManager
     private static int _currentView = 0;
     public void SetTimer()
     {
-        
+        while (true)
+        {
+            
+        }
     }
 }

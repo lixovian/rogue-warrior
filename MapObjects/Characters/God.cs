@@ -2,7 +2,7 @@
 
 public class God : Character
 {
-    private static readonly char DisplayChar = 'G';
+    protected static readonly char DisplayChar = 'G';
 
     private static readonly int MaxHealth = 1;
 

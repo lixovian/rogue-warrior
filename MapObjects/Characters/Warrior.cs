@@ -2,7 +2,7 @@
 
 public class Warrior : Character
 {
-    private static readonly char DisplayChar = 'W';
+    protected static readonly char DisplayChar = 'W';
     
     private static readonly int MaxHealth = 5;
 

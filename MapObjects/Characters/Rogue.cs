@@ -2,7 +2,7 @@
 
 public class Rogue : Character
 {
-    private static readonly char DisplayChar = 'R';
+    protected static readonly char DisplayChar = 'R';
     
     private static readonly int MaxHealth = 5;
 

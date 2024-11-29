@@ -6,9 +6,59 @@ public class Map
 {
     private MapObject?[,] _map;
 
-    public void SetMap(MapObject[,] map)
+
+    public static MapObject?[,] GetEmpty(Vector2 size)
+    {
+        MapObject?[,] map = new MapObject?[size[0], size[1]];
+
+        for (int i = 0; i < size[0]; i++)
+        {
+            for (int j = 0; j < size[1]; j++)
+            {
+                map[i, j] = null;
+            }
+        }
+        
+        return map;
+    }
+
+    public void SetMap(MapObject?[,] map)
     {
         _map = map;
+    }
+
+    public void SetMap(Character[]? characters, Obstacle[]? obstacles, Vector2 mapSize)
+    {
+        _map = new MapObject?[mapSize.X, mapSize.Y];
+
+        for (int i = 0; i < mapSize.X; i++)
+        {
+            for (int j = 0; j < mapSize.Y; j++)
+            {
+                _map[i, j] = null;
+            }
+        }
+
+        if (characters != null)
+        {
+            foreach (Character character in characters)
+            {
+                Set(character);
+            }
+        }
+
+        if (obstacles != null)
+        {
+            foreach (Obstacle obstacle in obstacles)
+            {
+                Set(obstacle);
+            }
+        }
+    }
+
+    public void Set(MapObject obj)
+    {
+        _map[obj.GetPosition().X, obj.GetPosition().Y] = obj;
     }
 
     public Vector2 GetSize()
@@ -51,6 +101,14 @@ public class Map
         }
 
         return characters.ToArray();
+    }
+    
+    public Character[] GetSortedCharacters()
+    {
+        Character[] characters = GetCharacters();
+        Array.Sort(characters, (x, y) => x.CharacterTeam - y.CharacterTeam);
+        
+        return characters;
     }
 
     public MapObject[] GetObjects()

@@ -4,16 +4,28 @@ public class TitleView : View
 {
     public void onStart()
     {
-        throw new NotImplementedException();
+        Console.Out.WriteLine("Welcome to");
+        
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.Out.WriteLine("██████╗  ██████╗  ██████╗ ██╗   ██╗███████╗    ██╗    ██╗ █████╗ ██████╗ ██████╗ ██╗ ██████╗ ██████╗");
+        Console.Out.WriteLine("██╔══██╗██╔═══██╗██╔════╝ ██║   ██║██╔════╝    ██║    ██║██╔══██╗██╔══██╗██╔══██╗██║██╔═══██╗██╔══██╗");
+        Console.Out.WriteLine("██████╔╝██║   ██║██║  ███╗██║   ██║█████╗█████╗██║ █╗ ██║███████║██████╔╝██████╔╝██║██║   ██║██████╔╝");
+        Console.Out.WriteLine("██╔══██╗██║   ██║██║   ██║██║   ██║██╔══╝╚════╝██║███╗██║██╔══██║██╔══██╗██╔══██╗██║██║   ██║██╔══██╗");
+        Console.Out.WriteLine("██║  ██║╚██████╔╝╚██████╔╝╚██████╔╝███████╗    ╚███╔███╔╝██║  ██║██║  ██║██║  ██║██║╚██████╔╝██║  ██║");
+        Console.Out.WriteLine("╚═╝  ╚═╝ ╚═════╝  ╚═════╝  ╚═════╝ ╚══════╝     ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ ╚═════╝ ╚═╝  ╚═╝");
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.Out.WriteLine("Version: 0.1.4 (pre-alpha)");
+        Console.Out.WriteLine("Press any button to continue...");
     }
 
     public void onIteration()
     {
-        throw new NotImplementedException();
+        Console.ReadKey();
+        
+        
     }
 
     public void onClose()
     {
-        throw new NotImplementedException();
     }
 }

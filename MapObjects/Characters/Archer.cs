@@ -2,7 +2,7 @@
 
 public class Archer : Character
 {
-    private static readonly char DisplayChar = 'A';
+    protected static readonly char DisplayChar = 'A';
     
     private static readonly int MaxHealth = 4;
 

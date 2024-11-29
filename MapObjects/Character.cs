@@ -14,7 +14,7 @@ public abstract class Character : MapObject
 
     private static Random _random = new();
 
-    private static readonly char DisplayChar = 'C';
+    protected static readonly char DisplayChar = 'C';
 
     private static readonly int MaxHealth = 15;
 
@@ -28,7 +28,6 @@ public abstract class Character : MapObject
 
     private static readonly int Strength = 1;
     private int Health;
-    private Vector2 Position;
 
     public Team CharacterTeam = Team.Neutral;
 
@@ -46,16 +45,15 @@ public abstract class Character : MapObject
         Position = position;
     }
 
-    public void Set(int a, Team team)
+    public void Set(int[] a, Team team)
     {
         CharacterTeam = team;
         Position = new Vector2(a);
     }
 
-    public void Set(int[] a, Team team)
+    public void SetTeam(Team team)
     {
         CharacterTeam = team;
-        Position = new Vector2(a);
     }
 
     public void Heal(int amount)
@@ -67,7 +65,7 @@ public abstract class Character : MapObject
     {
         Health -= damage;
 
-        if (IsDead())
+        if (IsActive())
         {
             Die();
         }
@@ -77,9 +75,9 @@ public abstract class Character : MapObject
     {
     }
 
-    public bool IsDead()
+    public override bool IsActive()
     {
-        return Health <= 0;
+        return Health > 0;
     }
 
     public virtual int GetSpeed()
@@ -92,7 +90,7 @@ public abstract class Character : MapObject
         return AttackRange;
     }
 
-    public virtual char GetDisplay()
+    public override char GetDisplay()
     {
         return DisplayChar;
     }
@@ -112,14 +110,14 @@ public abstract class Character : MapObject
         return MaxHealth;
     }
 
-    public Vector2 GetPosition()
+    public override Vector2 GetPosition()
     {
         return Position;
     }
 
     public void OnTurn(Map map)
     {
-        if (IsDead())
+        if (IsActive())
         {
             return;
         }
@@ -155,11 +153,11 @@ public abstract class Character : MapObject
     {
         Vector2 newPosition = Vector2.Sum(GetPosition(), movement);
 
-        MapObject[] objects = map.GetObjects();
+        MapObject?[] objects = map.GetObjects();
 
-        foreach (MapObject obj in objects)
+        foreach (MapObject? obj in objects)
         {
-            if (!obj.IsActive() && obj.GetPosition().Equals(newPosition)) return false;
+            if (obj != null && obj.IsActive() && obj.GetPosition().Equals(newPosition)) return false;
         }
 
         return true;

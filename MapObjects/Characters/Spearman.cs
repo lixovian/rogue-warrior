@@ -2,7 +2,7 @@
 
 public class Spearman : Character
 {
-    private static readonly char DisplayChar = 'S';
+    protected static readonly char DisplayChar = 'S';
     
     private static readonly int MaxHealth = 7;
 
