@@ -53,9 +53,11 @@ public abstract class Character : MapObject
         Position = new Vector2(a);
     }
 
-    public void SetTeam(Team team)
+    public Character SetTeam(Team team)
     {
         CharacterTeam = team;
+
+        return this;
     }
 
     public void Heal(int amount)
@@ -190,6 +192,39 @@ public abstract class Character : MapObject
             case 4:
                 return new Spearman();
             case 5:
+                return new Paladin();
+            default:
+                return new God();
+        }
+    }
+    
+    public static Character GetRandomRanger()
+    {
+        int seed = (int)Math.Floor(_random.NextDouble());
+
+        if (seed < Config.ArcherProbability)
+        {
+            return new Archer();
+        }
+        else
+        {
+            return new Mage();
+        }
+    }
+    
+    public static Character GetRandomMelee()
+    {
+        int seed = (int)Math.Floor(_random.NextDouble() * 4);
+
+        switch (seed)
+        {
+            case 0:
+                return new Rogue();
+            case 1:
+                return new Warrior();
+            case 3:
+                return new Spearman();
+            case 4:
                 return new Paladin();
             default:
                 return new God();

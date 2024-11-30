@@ -81,31 +81,52 @@ namespace Rogue_Warrior.Service.FileHandling
             return line.Trim().Split(" ");
         }
 
-        private static MapObject? GetObject(char ch)
+        private static MapObject? GetObject(char c1, char c2 = ' ')
         {
-            switch (ch)
+            switch (c1)
             {
                 case 'R':
-                    return GetRandomCharacter(Character.Team.Red);
+                    return SpecifyType(Character.Team.Red, c2);
                 case 'B':
-                    return GetRandomCharacter(Character.Team.Blue);
+                    return SpecifyType(Character.Team.Blue, c2);
                 case 'G':
-                    return GetRandomCharacter(Character.Team.Green);
+                    return SpecifyType(Character.Team.Green, c2);
                 case 'M':
-                    return GetRandomCharacter(Character.Team.Magenta);
+                    return SpecifyType(Character.Team.Magenta, c2);
                 case 'O':
                     return new Obstacle();
-                default:
-                    return null;
             }
+            
+            return null;
         }
 
-        private static MapObject GetRandomCharacter(Character.Team team)
+        private static Character? SpecifyType(Character.Team team, char c)
         {
-            Character character = Character.GetRandomCharacter();
-            character.SetTeam(team);
+            switch (c)
+            {
+                case '?': 
+                    return Character.GetRandomCharacter().SetTeam(team);
+                case 'r': 
+                    return Character.GetRandomRanger().SetTeam(team);
+                case 'm': 
+                    return Character.GetRandomMelee().SetTeam(team);;
+                case 'A':
+                    return new Archer().SetTeam(team);
+                case 'M':
+                    return new Mage().SetTeam(team);
+                case 'W':
+                    return new Warrior().SetTeam(team);
+                case 'S':
+                    return new Spearman().SetTeam(team);
+                case 'P':
+                    return new Paladin().SetTeam(team);
+                case 'R':
+                    return new Rogue().SetTeam(team);
+                case 'G':
+                    return new God().SetTeam(team);
+            }
 
-            return character;
+            return null;
         }
     }
 }
