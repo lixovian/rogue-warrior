@@ -33,8 +33,7 @@ namespace Rogue_Warrior.Service.FileHandling
 
                     for (int j = 0; j < parameters.Length; j++)
                     {
-                        MapObject obj = GetObject(parameters[j].ElementAtOrDefault(0));
-                        
+                        MapObject? obj = GetObject(parameters[j].ElementAtOrDefault(0), parameters[j].ElementAtOrDefault(1));
                         if (obj == null) continue;
                         
                         obj.SetPosition(new Vector2(i, j));
@@ -81,7 +80,7 @@ namespace Rogue_Warrior.Service.FileHandling
             return line.Trim().Split(" ");
         }
 
-        private static MapObject? GetObject(char c1, char c2 = ' ')
+        private static MapObject? GetObject(char c1, char c2)
         {
             switch (c1)
             {
@@ -126,7 +125,7 @@ namespace Rogue_Warrior.Service.FileHandling
                     return new God().SetTeam(team);
             }
 
-            return null;
+            return Character.GetRandomCharacter().SetTeam(team);
         }
     }
 }
