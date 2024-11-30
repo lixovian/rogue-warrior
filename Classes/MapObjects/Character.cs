@@ -200,7 +200,7 @@ public abstract class Character : MapObject
     
     public static Character GetRandomRanger()
     {
-        int seed = (int)Math.Floor(_random.NextDouble());
+        double seed = _random.NextDouble();
 
         if (seed < Config.ArcherProbability)
         {
@@ -222,9 +222,9 @@ public abstract class Character : MapObject
                 return new Rogue();
             case 1:
                 return new Warrior();
-            case 3:
+            case 2:
                 return new Spearman();
-            case 4:
+            case 3:
                 return new Paladin();
             default:
                 return new God();

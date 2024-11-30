@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Rogue-Warrior")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d86034874bf79fe5e6e7258c3813ebeb2f9485e8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4ac196a7c881118a7bbdff2e635d24daf10bb443")]
 [assembly: System.Reflection.AssemblyProductAttribute("Rogue-Warrior")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Rogue-Warrior")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
