@@ -6,6 +6,8 @@ public class Config
     public const int TeamSize = 3;
     public const int TeamAmount = 2;
     public const int SleepTime = 2500;
+    
+    public const string Version = "0.8.1 (alpha)";
 
     public const double ArcherProbability = 0.8;
     

@@ -39,7 +39,7 @@ public class ListChooser
                 Console.ForegroundColor = DefaultSelectedForegroundColor;
                 Console.BackgroundColor = DefaultSelectedBackgroundColor;
             }
-            Console.Out.WriteLine($"{i+1}. {TaskList[i]}");
+            Console.Out.WriteLine($"- {TaskList[i]}");
             
             Console.ResetColor();
         }

@@ -18,7 +18,7 @@ public class TitleView : View
         Console.Out.WriteLine("██║  ██║╚██████╔╝╚██████╔╝╚██████╔╝███████╗    ╚███╔███╔╝██║  ██║██║  ██║██║  ██║██║╚██████╔╝██║  ██║");
         Console.Out.WriteLine("╚═╝  ╚═╝ ╚═════╝  ╚═════╝  ╚═════╝ ╚══════╝     ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ ╚═════╝ ╚═╝  ╚═╝");
         Console.ResetColor();
-        Console.Out.WriteLine("Version: 0.3.1 (pre-alpha)");
+        Console.Out.WriteLine($"Version: {Config.Version}");
         Console.Out.WriteLine("Press any button to continue...");
     }
 
