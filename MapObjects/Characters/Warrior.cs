@@ -4,7 +4,7 @@ public class Warrior : Character
 {
     protected static readonly char DisplayChar = 'W';
     
-    private static readonly int MaxHealth = 5;
+    private static readonly int MaxHealth = 10;
 
     private static readonly int Strength = 2;
     private static readonly double AttackRange = Math.Sqrt(2);

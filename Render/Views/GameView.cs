@@ -17,28 +17,27 @@ public class GameView : View
         if (FileProcessor.ParseFile(Config.CurrentFile, out List<MapObject> map, out Vector2 size))
         {
             Console.Out.WriteLine("Map loaded, press any button to continue...");
-        } 
-        
+        }
+
         _game.Map.SetMap(map, size);
-        
+
         Console.ReadKey();
-        
+
         Renderer.Rerender(_game.Map);
-        Console.ReadKey();
     }
 
     public override void OnIteration()
     {
-        _game.MoveCharacters();
-        Renderer.Rerender(_game.Map);
-
         ConsoleKey key = Console.ReadKey().Key;
 
         if (key == ConsoleKey.Escape)
         {
             ViewManager.ChangeView("title");
         }
-
+        
+        _game.MoveCharacters();
+        Renderer.Rerender(_game.Map);
+        
         if (CheckWinner(out Character.Team winner))
         {
             Console.Out.WriteLine("Game over!");
@@ -47,9 +46,9 @@ public class GameView : View
             Console.ForegroundColor = Renderer.GetTeamColor(winner);
             Console.Out.Write($"{Renderer.GetTeamName(winner)}");
             Console.ResetColor();
-            
+
             Console.ReadKey();
-            
+
             ViewManager.ChangeView("menu");
         }
     }
@@ -57,11 +56,16 @@ public class GameView : View
     public bool CheckWinner(out Character.Team winner)
     {
         winner = Character.Team.Neutral;
-        
+
         Character[] characters = _game.Map.GetSortedCharacters();
 
+        if (characters.Length == 0)
+        {
+            return true;
+        }
+
         characters = Array.FindAll(characters, character => character.IsActive());
-        
+
         // Console.Out.WriteLine(string.Join(", ", characters.Select(ch => ch.CharacterTeam)));
         if (characters[0].CharacterTeam == characters[^1].CharacterTeam)
         {

@@ -38,7 +38,9 @@ public static class Renderer
                 }
                 else
                 {
+                    Console.ForegroundColor = Config.GroundColor;
                     Console.Write(Config.GroundChar);
+                    Console.ResetColor();
                 }
             }
             // Console.Write(Config.BorderChar);

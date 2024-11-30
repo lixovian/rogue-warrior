@@ -6,12 +6,19 @@ public class Rogue : Character
     
     private static readonly int MaxHealth = 5;
 
+    private static readonly double Speed = Math.Sqrt(8);
+    
     private static readonly int Strength = 2;
     private static readonly double AttackRange = Math.Sqrt(2);
     
     public override char GetDisplay()
     {
         return DisplayChar;
+    }
+
+    public override double GetSpeed()
+    {
+        return Speed;
     }
 
     public override int GetStrength()

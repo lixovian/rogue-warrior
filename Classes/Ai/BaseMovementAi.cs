@@ -1,7 +1,4 @@
-﻿using System.Reflection.Metadata;
-using Rogue_Warrior.MapObjects;
-
-namespace Rogue_Warrior;
+﻿namespace Rogue_Warrior;
 
 public class BaseMovementAi(Character main) : Ai(main)
 {
@@ -78,7 +75,7 @@ public class BaseMovementAi(Character main) : Ai(main)
         // Console.Out.WriteLine("..." + _main.GetPosition());
 
         path = path.FindAll(v => Vector2.GetDistance(v, goalPosition) <= _main.GetSpeed());
-        path.Sort((v1, v2) => waveMap[v1[0], v1[1]] - waveMap[v2[0], v2[1]]);
+        path.Sort((v1, v2) => waveMap[v2[0], v2[1]] - waveMap[v1[0], v1[1]]);
 
         // Console.Out.WriteLine();
         // foreach (Vector2 p in path)

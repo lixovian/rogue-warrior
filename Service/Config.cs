@@ -9,6 +9,7 @@ public class Config
     
     public const char GroundChar = '.';
     public const ConsoleColor HealthColor = ConsoleColor.Green;
+    public const ConsoleColor GroundColor = ConsoleColor.DarkGray;
     
     public static string CurrentFile = @"F:\Files\Coding\new\other\Rogue-Warrior\Rogue-Warrior\Files\Levels\map-1.rog";
 }
