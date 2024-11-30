@@ -41,8 +41,7 @@ public class ListChooser
             }
             Console.Out.WriteLine($"{i+1}. {TaskList[i]}");
             
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ResetColor();
         }
         
         ConsoleKey key = Console.ReadKey().Key;

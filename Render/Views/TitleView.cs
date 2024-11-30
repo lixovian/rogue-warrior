@@ -17,8 +17,8 @@ public class TitleView : View
         Console.Out.WriteLine("██╔══██╗██║   ██║██║   ██║██║   ██║██╔══╝╚════╝██║███╗██║██╔══██║██╔══██╗██╔══██╗██║██║   ██║██╔══██╗");
         Console.Out.WriteLine("██║  ██║╚██████╔╝╚██████╔╝╚██████╔╝███████╗    ╚███╔███╔╝██║  ██║██║  ██║██║  ██║██║╚██████╔╝██║  ██║");
         Console.Out.WriteLine("╚═╝  ╚═╝ ╚═════╝  ╚═════╝  ╚═════╝ ╚══════╝     ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ ╚═════╝ ╚═╝  ╚═╝");
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.Out.WriteLine("Version: 0.1.4 (pre-alpha)");
+        Console.ResetColor();
+        Console.Out.WriteLine("Version: 0.3.1 (pre-alpha)");
         Console.Out.WriteLine("Press any button to continue...");
     }
 

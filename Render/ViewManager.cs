@@ -4,7 +4,7 @@ namespace Rogue_Warrior.Render;
 
 public static class ViewManager
 {
-    private static View[] _views = [new TitleView(), new MenuView(), new GameView(), new ResultView()];
+    private static View[] _views = [new TitleView(), new MenuView(), new GameView()];
     
     private static int _currentView = 0;
     private static bool IsInterrupted = false;

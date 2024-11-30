@@ -9,6 +9,8 @@ public abstract class Character : MapObject
     {
         Red,
         Blue,
+        Green,
+        Magenta,
         Neutral
     }
 

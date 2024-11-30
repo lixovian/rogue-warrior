@@ -38,6 +38,38 @@ public class GameView : View
         {
             ViewManager.ChangeView("title");
         }
+
+        if (CheckWinner(out Character.Team winner))
+        {
+            Console.Out.WriteLine("Game over!");
+
+            Console.Out.Write("Winner: ");
+            Console.ForegroundColor = Renderer.GetTeamColor(winner);
+            Console.Out.Write($"{Renderer.GetTeamName(winner)}");
+            Console.ResetColor();
+            
+            Console.ReadKey();
+            
+            ViewManager.ChangeView("menu");
+        }
+    }
+
+    public bool CheckWinner(out Character.Team winner)
+    {
+        winner = Character.Team.Neutral;
+        
+        Character[] characters = _game.Map.GetSortedCharacters();
+
+        characters = Array.FindAll(characters, character => character.IsActive());
+        
+        // Console.Out.WriteLine(string.Join(", ", characters.Select(ch => ch.CharacterTeam)));
+        if (characters[0].CharacterTeam == characters[^1].CharacterTeam)
+        {
+            winner = characters[0].CharacterTeam;
+            return true;
+        }
+
+        return false;
     }
 
     public override void OnClose()
