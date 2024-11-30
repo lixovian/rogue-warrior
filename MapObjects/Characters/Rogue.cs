@@ -8,7 +8,7 @@ public class Rogue : Character
 
     private static readonly double Speed = Math.Sqrt(8);
     
-    private static readonly int Strength = 2;
+    private static readonly int Strength = 4;
     private static readonly double AttackRange = Math.Sqrt(2);
     
     public override char GetDisplay()
