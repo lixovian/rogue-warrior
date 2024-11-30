@@ -7,8 +7,8 @@ internal class Program
 {
     public static void Main(string[] args)
     {
-        // ViewManager.ChangeView("title");
-        ViewManager.ChangeView("game");
+        ViewManager.ChangeView("title");
+        // ViewManager.ChangeView("game");
         ViewManager.SetView();
     }
 }

@@ -29,9 +29,8 @@ public class GameView : View
 
     public override void OnIteration()
     {
-        // TODO: reorder for correct rendering
-        Renderer.Rerender(_game.Map);
         _game.MoveCharacters();
+        Renderer.Rerender(_game.Map);
 
         ConsoleKey key = Console.ReadKey().Key;
 

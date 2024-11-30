@@ -122,8 +122,6 @@ public abstract class Character : MapObject
             return;
         }
 
-        Console.Out.WriteLine(GetPosition());
-
         DebugData = "   /debug/";
 
         Vector2 movementOffset = _ai.CharacterCalculateMovement(map);
