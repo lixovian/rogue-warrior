@@ -89,6 +89,10 @@ namespace Rogue_Warrior.Service.FileHandling
                     return GetRandomCharacter(Character.Team.Red);
                 case 'B':
                     return GetRandomCharacter(Character.Team.Blue);
+                case 'G':
+                    return GetRandomCharacter(Character.Team.Green);
+                case 'M':
+                    return GetRandomCharacter(Character.Team.Magenta);
                 case 'O':
                     return new Obstacle();
                 default:

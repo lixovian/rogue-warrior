@@ -180,7 +180,7 @@ public class BaseMovementAi(Character main) : Ai(main)
             {
                 if (i == startPosition.X && j == startPosition.Y) continue;
 
-                if (map.Get(i, j) is Character character && character.IsEnemy(_main))
+                if (map.Get(i, j) is Character character && character.IsEnemy(_main) && character.IsActive())
                 {
                     int lowestNeighbour = GetNeighboursMin(waveMap, i, j, out _);
                     if (lowestNeighbour == -1) continue;
