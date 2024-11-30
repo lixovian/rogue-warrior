@@ -25,22 +25,22 @@ public class BaseAi(Character main) : BaseMovementAi(main)
 
     
     // TODO: Fix kostyl
-    public override Vector2 CharacterCalculateMovement(Map map)
-    {
-        Character[] characters = map.GetCharacters();
+    // public override Vector2 CharacterCalculateMovement(Map map)
+    // {
+        // Character[] characters = map.GetCharacters();
         
-        Character? closestEnemy = GetClosestEnemy(characters);
+        // Character? closestEnemy = GetClosestEnemy(characters);
 
-        if (closestEnemy == null || _main.GetDistance(closestEnemy) <= _main.GetAttackRange())
-            return new Vector2();
+        // if (closestEnemy == null || _main.GetDistance(closestEnemy) <= _main.GetAttackRange())
+            // return new Vector2();
 
-        // TODO: make speed work properly
-        Vector2 offset = Vector2.Subtract(closestEnemy.GetPosition(), _main.GetPosition()).Limit(new Vector2(_main.GetSpeed()));
+        // // TODO: make speed work properly
+        // Vector2 offset = Vector2.Subtract(closestEnemy.GetPosition(), _main.GetPosition()).Limit(new Vector2(_main.GetSpeed()));
 
-        Console.Out.WriteLine(Vector2.Subtract(closestEnemy.GetPosition(), _main.GetPosition()));
+        // Console.Out.WriteLine(Vector2.Subtract(closestEnemy.GetPosition(), _main.GetPosition()));
         
-        return offset;
-    }
+        // return offset;
+    // }
 
     private int CharactersCompareDanger(Character character1, Character character2)
     {
@@ -78,20 +78,5 @@ public class BaseAi(Character main) : BaseMovementAi(main)
         }
 
         return closestEnemy;
-    }
-
-    private Character[] CharacterGetInRangeEnemies(Character[] characters)
-    {
-        List<Character> inRangeEnemies = [];
-
-        foreach (Character character in characters)
-        {
-            if (_main.IsEnemy(character) && _main.GetDistance(character) <= _main.GetAttackRange() && character.IsActive())
-            {
-                inRangeEnemies.Add(character);
-            }
-        }
-
-        return inRangeEnemies.ToArray();
     }
 }

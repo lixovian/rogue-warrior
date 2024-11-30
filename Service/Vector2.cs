@@ -85,6 +85,12 @@ public class Vector2
         return this;
     }
     
+    public Vector2 Copy()
+    {
+        Vector2 output = new Vector2(x, y);
+        return output;
+    }
+    
     public Vector2 GetOpposite()
     {
         return new Vector2(-x, -y);

@@ -20,7 +20,7 @@ public abstract class Character : MapObject
 
     private static readonly double AttackRange = 1;
     
-    private static readonly int Speed = 1;
+    private static readonly double Speed = 1.5;
 
     protected Ai _ai;
 
@@ -80,7 +80,7 @@ public abstract class Character : MapObject
         return Health > 0;
     }
 
-    public virtual int GetSpeed()
+    public virtual double GetSpeed()
     {
         return Speed;
     }
@@ -121,6 +121,8 @@ public abstract class Character : MapObject
         {
             return;
         }
+
+        Console.Out.WriteLine(GetPosition());
 
         DebugData = "   /debug/";
 
