@@ -30,6 +30,11 @@ public static class Renderer
             {
                 MapObject? obj = map.Get(i, j);
 
+                if (j > 0)
+                {
+                    Console.Write(' ');
+                }
+                
                 if (obj != null && obj.IsActive())
                 {
                     Console.ForegroundColor = GetTextColor(obj);
